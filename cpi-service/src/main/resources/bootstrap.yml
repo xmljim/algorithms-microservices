@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: cpi-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: config-server
+
+springdoc:
+  swagger-ui:
+    defaultModelsExpandDepth: 3
+    api-docs:
+      resolve-schema-properties: true

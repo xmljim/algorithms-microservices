@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    platform: h2
+  jpa:
+    defer-data-source-initialization: true
+server:
+  port: 0

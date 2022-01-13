@@ -1,0 +1,39 @@
+server:
+  port: 8080
+management:
+  endpoint:
+    gateway:
+      enabled: true
+spring:
+  cloud:
+    gateway:
+      metrics:
+        enabled: true
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: retirement-service
+          uri: lb://retirement-service
+          predicates:
+            - Path=/api/retirement/**
+          filters:
+            - RewritePath=/api(?<path>/?.*), $\{path}
+        - id: cpi-service
+          uri: lb://cpi-service
+          predicates:
+            - Path=/api/cpi/**
+          filters:
+            - RewritePath=/api(?<path>/?.*), $\{path}
+        - id: stock-service
+          uri: lb://stock-service
+          predicates:
+            - Path=/api/stocks/**
+          filters:
+            - RewritePath=/api(?<path>/?.*), $\{path}
+    discovery:
+      enabled: true
+    loadbalancer:
+      ribbon:
+        enabled: false

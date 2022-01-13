@@ -1,0 +1,29 @@
+services:
+  dependencies:
+    statistics:
+      name: statistics-service
+      path: /statistics
+      endpoints:
+        covariance:
+          method: post
+          path: /covariance
+        covariance-raw:
+          method: post
+          path: /covariance/raw
+    cpi:
+      name: cpi-service
+      path: /cpi
+      endpoints:
+        inflationMultiplier:
+          method: get
+          path: /inflation/{year}/{baseYear}
+    stocks:
+      name: stock-service
+      path: /stocks
+      endpoints:
+        get-markets:
+          method: get
+          path: /markets
+        market-history:
+          method: get
+          path: /markets/{market}

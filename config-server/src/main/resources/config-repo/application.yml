@@ -1,0 +1,82 @@
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+    instanceId: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+services:
+  dependencies:
+    statistics:
+      name: statistics-service
+      path: /statistics
+      endpoints:
+        covariance:
+          method: post
+          path: /covariance
+        covariance-raw:
+          method: post
+          path: /covariance/raw
+        linear-regression:
+          method: post
+          path: /linear-regression
+        linear-regression-raw:
+          method: post
+          path: /linear-regression/raw
+        sum:
+          method: post
+          path: /sum
+        sum-raw:
+          method: post
+          path: /sum-raw
+        mean:
+          method: post
+          path: /mean
+        mean-raw:
+          method: post
+          path: /mean-raw
+        median:
+          method: post
+          path: /median
+
+    cpi:
+      name: cpi-service
+      path: /cpi
+      endpoints:
+        inflationMultiplier:
+          method: get
+          path: /inflation/{year}/{baseYear}
+        averageInflation:
+          method: get
+          path: /inflation/rate/{lastNumberOfYears}
+    stocks:
+      name: stock-service
+      path: /stocks
+      endpoints:
+        get-markets:
+          method: get
+          path: /markets
+        market-history:
+          method: get
+          path: /markets/{market}
+        consolidatedMarketHistory:
+          method: get
+          path: /markets/consolidated/{fromYear}
+        consolidatedMarketGrowth:
+          method: get
+          path: /markets/consolidated/growth/{fromYear}
+    retirement:
+      name: retirement-service
+      path: /retirement
+      endpoints:
+        estimateRetirement:
+          method: post
+          path: /estimate

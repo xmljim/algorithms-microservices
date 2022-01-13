@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: statistics-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: config-server
+
+algorithms:
+  statistics:
+    provider:
+      version: 1.0.0
+      name: Statistics

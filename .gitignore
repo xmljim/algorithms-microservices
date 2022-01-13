@@ -1,0 +1,9 @@
+# Project exclude paths
+/algorithm-model/target/
+/algorithm-model-impl/target/
+/algorithms-service-model/target/
+/financial-functions/target/
+/financial-functions-impl/target/
+/function-commons/target/
+/statistics-functions/target/
+/statistics-functions-impl/target/

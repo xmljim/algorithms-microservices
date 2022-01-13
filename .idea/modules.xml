@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/algorithm-model/algorithm-model.iml" filepath="$PROJECT_DIR$/algorithm-model/algorithm-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algorithm-model-impl/algorithm-model-impl.iml" filepath="$PROJECT_DIR$/algorithm-model-impl/algorithm-model-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/algorithms-microservices.iml" filepath="$PROJECT_DIR$/.idea/algorithms-microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algorithms-service-model/algorithms-service-model.iml" filepath="$PROJECT_DIR$/algorithms-service-model/algorithms-service-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cpi-service/cpi-service.iml" filepath="$PROJECT_DIR$/cpi-service/cpi-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/discovery-server/discovery-server.iml" filepath="$PROJECT_DIR$/discovery-server/discovery-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/financial-functions/financial-functions.iml" filepath="$PROJECT_DIR$/financial-functions/financial-functions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/financial-functions-impl/financial-functions-impl.iml" filepath="$PROJECT_DIR$/financial-functions-impl/financial-functions-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/function-commons/function-commons.iml" filepath="$PROJECT_DIR$/function-commons/function-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/retirement-service/retirement-service.iml" filepath="$PROJECT_DIR$/retirement-service/retirement-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/statistics-functions/statistics-functions.iml" filepath="$PROJECT_DIR$/statistics-functions/statistics-functions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/statistics-functions-impl/statistics-functions-impl.iml" filepath="$PROJECT_DIR$/statistics-functions-impl/statistics-functions-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/statistics-server/statistics-service.iml" filepath="$PROJECT_DIR$/statistics-server/statistics-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stock-service/stock-service.iml" filepath="$PROJECT_DIR$/stock-service/stock-service.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    platform: h2
+  jpa:
+    defer-data-source-initialization: true
+
+logging:
+  level:
+    com:
+      zaxxer: NONE
+
+server:
+  port: 0

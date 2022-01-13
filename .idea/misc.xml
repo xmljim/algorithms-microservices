@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/cpi-service/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/stock-service/pom.xml" />
+        <option value="$PROJECT_DIR$/algorithm-model/pom.xml" />
+        <option value="$PROJECT_DIR$/discovery-server/pom.xml" />
+        <option value="$PROJECT_DIR$/function-commons/pom.xml" />
+        <option value="$PROJECT_DIR$/statistics-server/pom.xml" />
+        <option value="$PROJECT_DIR$/financial-functions/pom.xml" />
+        <option value="$PROJECT_DIR$/algorithm-model-impl/pom.xml" />
+        <option value="$PROJECT_DIR$/statistics-functions/pom.xml" />
+        <option value="$PROJECT_DIR$/algorithms-service-model/pom.xml" />
+        <option value="$PROJECT_DIR$/financial-functions-impl/pom.xml" />
+        <option value="$PROJECT_DIR$/statistics-functions-impl/pom.xml" />
+        <option value="$PROJECT_DIR$/statistics-service/pom.xml" />
+        <option value="$PROJECT_DIR$/retirement-service/pom.xml" />
+        <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" default="true" project-jdk-name="15" project-jdk-type="JavaSDK" />
+</project>

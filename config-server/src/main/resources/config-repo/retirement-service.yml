@@ -1,0 +1,15 @@
+
+algorithms:
+  financial:
+    provider:
+      version: 1.0.0
+      name: Financial
+
+retirement:
+  growthRate:
+    year: 1991
+  treasury:
+    yield: 0.013
+
+server:
+  port: 0
