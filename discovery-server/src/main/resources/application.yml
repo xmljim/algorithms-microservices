@@ -8,5 +8,6 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+
   server:
     evictionIntervalTimerInMs: 3000

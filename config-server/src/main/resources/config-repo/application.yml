@@ -80,3 +80,6 @@ services:
         estimateRetirement:
           method: post
           path: /estimate
+
+config:
+  profile: default

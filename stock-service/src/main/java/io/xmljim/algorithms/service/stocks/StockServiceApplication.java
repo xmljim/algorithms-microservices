@@ -16,22 +16,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @Slf4j
 public class StockServiceApplication implements CommandLineRunner {
 
-	@Autowired
-	CPIClient client;
-
 	public static void main(String[] args) {
 		SpringApplication.run(StockServiceApplication.class, args);
-
-
-
 	}
 
 	public void run(String... args) {
 		log.info("Starting Stock Service");
-		CPIComputedResponse response = client.getInflationMultiplier(2020, 1990);
-
-		log.info("Run Feign Client: {}", response);
-		log.info("Run Feign Client Result: {}", response.getResults().get(0).getData());
 	}
 
 }

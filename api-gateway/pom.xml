@@ -11,7 +11,7 @@
 
 	<groupId>io.xmljim.algorithms.service</groupId>
 	<artifactId>api-gateway</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>api-gateway</name>
 	<description>API Gateway</description>
 
@@ -78,7 +78,23 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.1.4</version>
+				<configuration>
+					<to>
+						<image>xmljim/${pom.artifactId}</image>
+						<tags>
+							<tag>${pom.version}</tag>
+							<tag>latest</tag>
+						</tags>
+					</to>
+
+				</configuration>
+			</plugin>
 		</plugins>
+
 	</build>
 
 </project>

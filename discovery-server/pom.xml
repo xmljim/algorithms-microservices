@@ -8,9 +8,10 @@
 		<version>2.6.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>io.xml.algorithms.services</groupId>
 	<artifactId>discovery-server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>discovery-server</name>
 
 	<description>Discovery Service server</description>
@@ -36,6 +37,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -54,6 +56,21 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.1.4</version>
+				<configuration>
+					<to>
+						<image>xmljim/${pom.artifactId}</image>
+						<tags>
+							<tag>${pom.version}</tag>
+							<tag>latest</tag>
+						</tags>
+					</to>
+
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

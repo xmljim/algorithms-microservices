@@ -1,0 +1,63 @@
+version: '3.9'
+services:
+  discovery-server:
+    image: xmljim/discovery-server:latest
+    ports:
+      - 8761:8761
+  config-server:
+    image: xmljim/config-server:latest
+    ports:
+      - 8888:8888
+    environment:
+      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka -Dserver.port=8888
+    depends_on:
+      - discovery-server
+  cpi-service:
+    image: xmljim/cpi-service:latest
+    ports:
+      - 49200:49200
+    environment:
+      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka -Dserver.port=49200
+    depends_on:
+      - discovery-server
+      - config-server
+  stock-service:
+    image: xmljim/stock-service:latest
+    ports:
+      - 49201:49201
+    environment:
+      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka -Dserver.port=49201
+    depends_on:
+      - discovery-server
+      - config-server
+  statistics-service:
+    image: xmljim/statistics-service:latest
+    ports:
+      - 49202:49202
+    environment:
+      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka -Dserver.port=49202
+    depends_on:
+      - discovery-server
+      - config-server
+  retirement-service:
+    image: xmljim/retirement-service:latest
+    ports:
+      - 49203:49023
+    environment:
+      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka -Dserver.port=49203
+    depends_on:
+      - discovery-server
+      - config-server
+  api-gateway:
+    image: xmljim/api-gateway:latest
+    ports:
+      - 8080:8080
+    environment:
+      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka
+    depends_on:
+      - discovery-server
+      - config-server
+      - cpi-service
+      - stock-service
+      - statistics-service
+      - retirement-service
