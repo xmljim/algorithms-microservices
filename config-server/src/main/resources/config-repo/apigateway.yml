@@ -4,6 +4,10 @@ management:
   endpoint:
     gateway:
       enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 spring:
   cloud:
     gateway:
@@ -15,19 +19,19 @@ spring:
           lowerCaseServiceId: true
       routes:
         - id: retirement-service
-          uri: lb://retirement-service
+          uri: lb://retirementservice
           predicates:
             - Path=/api/retirement/**
           filters:
             - RewritePath=/api(?<path>/?.*), $\{path}
         - id: cpi-service
-          uri: lb://cpi-service
+          uri: lb://cpiservice
           predicates:
             - Path=/api/cpi/**
           filters:
             - RewritePath=/api(?<path>/?.*), $\{path}
         - id: stock-service
-          uri: lb://stock-service
+          uri: lb://stockservice
           predicates:
             - Path=/api/stocks/**
           filters:

@@ -16,7 +16,7 @@ eureka:
 services:
   dependencies:
     statistics:
-      name: statistics-service
+      name: statisticsservice
       path: /statistics
       endpoints:
         covariance:
@@ -48,7 +48,7 @@ services:
           path: /median
 
     cpi:
-      name: cpi-service
+      name: cpiservice
       path: /cpi
       endpoints:
         inflationMultiplier:
@@ -58,7 +58,7 @@ services:
           method: get
           path: /inflation/rate/{lastNumberOfYears}
     stocks:
-      name: stock-service
+      name: stockservice
       path: /stocks
       endpoints:
         get-markets:
@@ -74,7 +74,7 @@ services:
           method: get
           path: /markets/consolidated/growth/{fromYear}
     retirement:
-      name: retirement-service
+      name: retirementservice
       path: /retirement
       endpoints:
         estimateRetirement:

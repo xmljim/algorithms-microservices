@@ -4,9 +4,9 @@ eureka:
       defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
 spring:
   application:
-    name: retirement-service
+    name: retirementservice
   cloud:
     config:
       discovery:
         enabled: true
-        serviceId: config-server
+        serviceId: configserver

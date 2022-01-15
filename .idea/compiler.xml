@@ -25,21 +25,21 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="algorithm-model" target="11" />
-      <module name="algorithm-model-impl" target="11" />
-      <module name="algorithms-service-model" target="11" />
-      <module name="api-gateway" target="11" />
-      <module name="config-server" target="11" />
-      <module name="cpi-service" target="11" />
-      <module name="discovery-server" target="11" />
-      <module name="financial-functions" target="11" />
-      <module name="financial-functions-impl" target="11" />
-      <module name="function-commons" target="11" />
-      <module name="retirement-service" target="11" />
-      <module name="statistics-functions" target="11" />
+      <module name="algorithm-model" target="15" />
+      <module name="algorithm-model-impl" target="15" />
+      <module name="algorithms-service-model" target="15" />
+      <module name="api-gateway" target="15" />
+      <module name="config-server" target="15" />
+      <module name="cpi-service" target="15" />
+      <module name="discovery-server" target="15" />
+      <module name="financial-functions" target="15" />
+      <module name="financial-functions-impl" target="15" />
+      <module name="function-commons" target="15" />
+      <module name="retirement-service" target="15" />
+      <module name="statistics-functions" target="15" />
       <module name="statistics-functions-impl" target="11" />
-      <module name="statistics-service" target="11" />
-      <module name="stock-service" target="11" />
+      <module name="statistics-service" target="15" />
+      <module name="stock-service" target="15" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

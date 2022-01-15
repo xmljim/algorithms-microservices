@@ -1,55 +1,110 @@
 version: '3.9'
 services:
+
   discovery-server:
     image: xmljim/discovery-server:latest
+    hostname: discovery-server-1
     ports:
       - 8761:8761
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      start_period: 10s
+      timeout: 5s
+      retries: 5
+      interval: 10s
+
   config-server:
     image: xmljim/config-server:latest
+    hostname: config-server-1
     ports:
-      - 8888:8888
+      - 8888:42888
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8888/actuator/health" ]
+      start_period: 10s
+      timeout: 5s
+      retries: 5
+      interval: 10s
     environment:
-      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka -Dserver.port=8888
+      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka
     depends_on:
       - discovery-server
+
   cpi-service:
     image: xmljim/cpi-service:latest
+    hostname: cpi-service-1
     ports:
-      - 49200:49200
+      - 43301:43301
+    command: ["./wait-for-it.sh", "config-server:8888", "-t 45"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:43301/actuator/health" ]
+      start_period: 10s
+      timeout: 5s
+      retries: 5
+      interval: 10s
     environment:
-      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka -Dserver.port=49200
+      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka
     depends_on:
       - discovery-server
       - config-server
+
   stock-service:
     image: xmljim/stock-service:latest
+    hostname: stock-service-1
     ports:
-      - 49201:49201
+      - 43302:43302
+    command: ["./wait-for-it.sh", "cpi-service:43301", "-t 45"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:43302/actuator/health" ]
+      start_period: 10s
+      timeout: 5s
+      retries: 5
+      interval: 10s
     environment:
-      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka -Dserver.port=49201
+      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka
     depends_on:
       - discovery-server
       - config-server
+      - cpi-service
+
   statistics-service:
     image: xmljim/statistics-service:latest
+    hostname: statistics-service-1
     ports:
-      - 49202:49202
+      - 43303:43303
+    command: ["./wait-for-it.sh", "stock-service:43302", "-t 45"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:43303/actuator/health" ]
+      start_period: 10s
+      timeout: 5s
+      retries: 5
+      interval: 10s
     environment:
-      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka -Dserver.port=49202
+      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka
     depends_on:
       - discovery-server
       - config-server
+
   retirement-service:
     image: xmljim/retirement-service:latest
+    hostname: retirement-service-1
     ports:
-      - 49203:49023
+      - 43304:43304
+    command: [ "./wait-for-it.sh", "statistics-service:43303", "-t 45" ]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:43304/actuator/health" ]
+      start_period: 10s
+      timeout: 5s
+      retries: 5
+      interval: 10s
     environment:
-      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka -Dserver.port=49203
+      - JAVA_TOOL_OPTIONS=-DEUREKA_SERVER=http://discovery-server:8761/eureka
     depends_on:
       - discovery-server
       - config-server
+
   api-gateway:
     image: xmljim/api-gateway:latest
+    hostname: api-gateway-1
     ports:
       - 8080:8080
     environment:
@@ -61,3 +116,17 @@ services:
       - stock-service
       - statistics-service
       - retirement-service
+    command: ["./wait-for-it.sh", "retirement-service:43304", "-t 45"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      start_period: 10s
+      timeout: 5s
+      retries: 5
+      interval: 10s
+
+
+
+
+
+
+

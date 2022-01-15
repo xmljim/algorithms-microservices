@@ -11,13 +11,14 @@
 
 	<groupId>io.xmljim.algorithms.service</groupId>
 	<artifactId>api-gateway</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.1.6</version>
 	<name>api-gateway</name>
 	<description>API Gateway</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>15</java.version>
 		<spring-cloud.version>2021.0.0</spring-cloud.version>
+		<spring.active.profile>docker</spring.active.profile>
 	</properties>
 
 	<dependencies>
@@ -51,7 +52,21 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-webmvc-core -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-webmvc-core</artifactId>
+			<version>1.6.3</version>
+		</dependency>
 	</dependencies>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -69,6 +84,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${parent.version}</version>
 				<configuration>
 					<excludes>
 						<exclude>
@@ -77,6 +93,13 @@
 						</exclude>
 					</excludes>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build-info</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
@@ -84,17 +107,124 @@
 				<version>3.1.4</version>
 				<configuration>
 					<to>
-						<image>xmljim/${pom.artifactId}</image>
+						<image>xmljim/${project.artifactId}</image>
 						<tags>
-							<tag>${pom.version}</tag>
+							<tag>${project.version}</tag>
 							<tag>latest</tag>
 						</tags>
 					</to>
-
+					<from>
+						<image>adoptopenjdk/openjdk${java.version}</image>
+					</from>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>parse-version</id>
+						<goals>
+							<goal>parse-version</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.8.1</version>
+			</plugin>
 		</plugins>
-
 	</build>
-
+	<profiles>
+		<profile>
+			<id>bump-patch</id>
+			<activation>
+				<property>
+					<name>bumpPatch</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>versions-maven-plugin</artifactId>
+						<version>${versions-maven-plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>set</goal>
+								</goals>
+								<phase>validate</phase>
+								<configuration>
+									<!--suppress UnresolvedMavenProperty -->
+									<newVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}</newVersion>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>bump-minor</id>
+			<activation>
+				<property>
+					<name>bumpMinor</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>versions-maven-plugin</artifactId>
+						<version>${versions-maven-plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>set</goal>
+								</goals>
+								<phase>validate</phase>
+								<configuration>
+									<!--suppress UnresolvedMavenProperty -->
+									<newVersion>${parsedVersion.majorVersion}.${parsedVersion.nextMinorVersion}.0</newVersion>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>bump-major</id>
+			<activation>
+				<property>
+					<name>bumpMajor</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>versions-maven-plugin</artifactId>
+						<version>${versions-maven-plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>set</goal>
+								</goals>
+								<phase>validate</phase>
+								<configuration>
+									<!--suppress UnresolvedMavenProperty -->
+									<newVersion>${parsedVersion.nextMajorVersion}.0.0</newVersion>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

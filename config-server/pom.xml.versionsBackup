@@ -12,14 +12,14 @@
 
 	<groupId>io.xml.algorithms.services</groupId>
 	<artifactId>config-server</artifactId>
-	<version>1.1.8</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>config-server</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>15</java.version>
 		<spring-cloud.version>2021.0.0</spring-cloud.version>
-		<spring.active.profile>native, docker</spring.active.profile>
+		<spring.active.profile>docker</spring.active.profile>
 	</properties>
 
 

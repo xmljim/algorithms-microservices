@@ -1,11 +1,11 @@
 spring:
   application:
-    name: stock-service
+    name: stockservice
   cloud:
     config:
       discovery:
         enabled: true
-        serviceId: config-server
+        serviceId: configserver
 eureka:
   client:
     service-url:

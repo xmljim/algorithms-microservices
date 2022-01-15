@@ -1,0 +1,4 @@
+config:
+  profile: docker
+
+server.port: 8194

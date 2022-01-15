@@ -1,11 +1,11 @@
 spring:
   application:
-    name: cpi-service
+    name: cpiservice
   cloud:
     config:
       discovery:
         enabled: true
-        serviceId: config-server
+        serviceId: configserver
 
 springdoc:
   swagger-ui:
